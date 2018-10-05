@@ -19,11 +19,11 @@ service: rdsSnapshotDelete # NOTE: update this with your service name
 
 provider:
   name: aws
-  runtime: python3.6
+  runtime: python2.7
   timeout: 300
 
 # you can overwrite defaults here
-  stage: dev
+  stage: stage
   region: ap-southeast-2
 
 # you can add statements to the Lambda function's IAM Role here
@@ -60,8 +60,8 @@ functions:
   snapShotDeleteRDS:
     handler: handler.snapShotDeleteRDS
     events:
-      - schedule: rate(5 minutes)
-
+        - schedule: "cron(0 0 ? * 1 *)"
+            
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
